@@ -311,4 +311,7 @@ PORT = process.env.PORT || 8080
 app.get("/contact",(req,res)=>{
 	res.render("contact");
 });
+app.get("/about",(req,res)=>{
+	res.render("about");
+});
 app.listen(PORT, ()=>console.log(`The server is started at PORT : ${PORT}`));
