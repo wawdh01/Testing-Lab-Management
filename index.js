@@ -29,6 +29,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodoverride("_method"));
 const flash = require('connect-flash');
 const testdone = require('./models/testdone');
+app.use(express.json())
 app.use(flash());
 
 app.locals.moment = require('moment');
