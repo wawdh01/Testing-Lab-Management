@@ -310,6 +310,6 @@ app.post('/reset/:token', function(req, res) {
 app.get("/contact",(req,res)=>{
 	res.render("contact");
 });
-app.listen(process.env.port || 8080, () =>{
+app.listen( 8080, () =>{
   console.log("Testing LAB Started at port 8080.....");
 });
