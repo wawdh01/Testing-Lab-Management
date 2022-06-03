@@ -15,7 +15,8 @@ const userdata = require("./models/testdone")
 const nodemailer = require("nodemailer");
 const async = require('async')
 const middleware = require("./middleware");
-
+const dotenv = require('dotenv');
+dotenv.config();
 //Connect to Database
 mongoose.connect("mongodb+srv://docproject:abcd123@docproject.72nu7uj.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true}, (err)=> {
   if(err) return console.error(err);
@@ -306,10 +307,8 @@ app.post('/reset/:token', function(req, res) {
 
 
 
-
+PORT = process.env.PORT || 8080
 app.get("/contact",(req,res)=>{
 	res.render("contact");
 });
-app.listen( 8080, () =>{
-  console.log("Testing LAB Started at port 8080.....");
-});
+app.listen(PORT, ()=>console.log(`The server is started at PORT : ${PORT}`));
