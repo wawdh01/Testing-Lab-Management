@@ -1,0 +1,15 @@
+<%-include('partials/header') %>
+<div style="padding: 20px; margin: 10px;">
+    <center>
+    <form action="/deletedtest" method="POST">
+        <lable for="idtest">Choose the Test you wanted to be deleted : </label><br>
+        <select id="idtest" name="idtest">
+        <% tests.forEach(test =>{ %>
+            <option value=<%= test._id %>><%= test.name %></option>
+        <% }) %>
+        </select><br>
+        <input type="submit" value="Delete Test" style="padding: 10px; margin: 20px; color: red">
+    </form>
+    </center>
+</div>
+<%-include('partials/footer') %>

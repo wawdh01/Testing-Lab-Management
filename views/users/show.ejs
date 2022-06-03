@@ -14,6 +14,9 @@
     <% if (admin == true) { %>
       <button class="btn btn-lg btn-block" style="background-color:Aqua; margin: 20px;"><a href="/addtest">Add New Test</a></button>
     <% } %>
+    <% if (admin == true) { %>
+      <button class="btn btn-lg btn-block" style="background-color:red; margin: 20px;"><a href="/deletetest">Delete Test</a></button>
+    <% } %>
   </div>
   <div class="col-md-8">
     <h3 style="font-size:3.5rem; color: darkkhaki;"><%=user.username%>'s LAB Test Data</h3>

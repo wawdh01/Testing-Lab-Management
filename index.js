@@ -300,12 +300,33 @@ app.post('/reset/:token', function(req, res) {
       });
     }
   ], function(err) {
-    res.redirect('/home');
+    res.redirect("home");
   });
 });
 
+app.get("/addtest", middleware.isLoggedIn, (req,res)=>{
+  res.render("addtest");
+})
 
-
+app.post("/addedtest", (req, res)=>{
+  test = new tests({
+    name: req.body.name,
+    image: req.body.image,
+    price: req.body.price,
+    discount: req.body.discount,
+    description: req.body.description
+  })
+  tests.create(test, (err, newly) =>{
+    if(err) {
+      req.flash("error", "Unable to Add new test..!")
+      res.redirect("home")
+    }
+    else {
+      req.flash("success", "new Test Added Successfully...!")
+      res.redirect("home")
+    }
+  })
+})
 
 PORT = process.env.PORT || 8080
 app.get("/contact",(req,res)=>{
@@ -314,4 +335,29 @@ app.get("/contact",(req,res)=>{
 app.get("/about",(req,res)=>{
 	res.render("about");
 });
+
+app.get("/deletetest", (req, res)=>{
+  tests.find({}, (err,alltests)=>{
+    if(err){
+      console.log(err);
+    }else{
+    res.render("deletetest", {tests:alltests});
+    }
+  });
+})
+
+app.post("/deletedtest", (req, res)=>{
+  const id = req.body.idtest;
+  tests.deleteOne({_id: id}, (err, alltests)=>{
+    if(err) {
+      req.flash("error", "Cannot delete the Test..!");
+      res.redirect("home");
+    }
+    else {
+      req.flash("success", "Test Deleted Successfully...!");
+      res.redirect("home");
+    }
+  })
+})
+
 app.listen(PORT, ()=>console.log(`The server is started at PORT : ${PORT}`));
