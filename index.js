@@ -115,7 +115,7 @@ app.get("/logout", (req,res)=>{
 });
 
 
-app.get("/users/:id", (req,res)=>{
+app.get("/users/:id", middleware.isLoggedIn, (req,res)=>{
   user.findById(req.params.id, (err, founduser)=>{
     if(err){
       req.flash("error", "user doesnot exists");
@@ -128,8 +128,8 @@ app.get("/users/:id", (req,res)=>{
           res.redirect("back");
         }
         else {
-          console.log(data);
-          res.render("users/show",{user: founduser, userdata: data});
+          console.log(founduser.isadmin);
+          res.render("users/show",{user: founduser, userdata: data, admin: founduser.isadmin});
         }
       })
     };

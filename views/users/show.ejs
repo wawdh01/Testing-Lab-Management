@@ -11,6 +11,9 @@
     </div>
     <p style="text-align:center; color: cyan;"><%=user.description%></p>
     <p style="text-align: center; color: chartreuse"><a href="\booktest">Book a Test</a></p>
+    <% if (admin == true) { %>
+      <button class="btn btn-lg btn-block" style="background-color:Aqua; margin: 20px;"><a href="/addtest">Add New Test</a></button>
+    <% } %>
   </div>
   <div class="col-md-8">
     <h3 style="font-size:3.5rem; color: darkkhaki;"><%=user.username%>'s LAB Test Data</h3>

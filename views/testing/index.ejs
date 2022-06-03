@@ -26,12 +26,12 @@
         <p style="margin-bottom: 20px;">
             <center>
             <% if (test.discount !== 0) { %>
-                <p><del><%= test.price %></del></p>
+                <p style="color: red;"><del><%= test.price %></del></p>
                 <p><%= test.discount %></p>
-                <p><%= test.price - test.discout %></p>
+                <p style="color: green;"><%= test.price * (100-test.discount) / 100 %></p>
             <% } else {%>
                 <div style="padding: 17px;"></div>
-                <p><%= test.price %></p>
+                <p style="color: green;"><%= test.price %></p>
                 <div style="padding: 17px;"></div>
             <% } %>
             </center>
