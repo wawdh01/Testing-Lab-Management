@@ -39,9 +39,10 @@
             <td> <%= data.price * 0.1 %></td>
         </tr>
     </table>
-    <form method="post" action="/addfinaltest">
-        <label> Total Price : </label>
-        <input type="number" id= "finalprice" value="<%= data.price * (100-data.discount) / 100 + data.price * 0.1 %>" readonly>
+    <form action="/addfinaltest" method="post" >
+        <input style="display: none;" id="test" name="test" value=<%= data.name %>>
+        <label for="finalprice"> Total Price : </label>
+        <input type="number" id= "finalprice" name="finalprice" value="<%= data.price * (100-data.discount) / 100 + data.price * 0.1 %>" readonly>
         <input type="Submit" value="Book Test">
     </form>
 

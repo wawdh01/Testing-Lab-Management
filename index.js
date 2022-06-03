@@ -166,10 +166,12 @@ app.get('/booktest', middleware.isLoggedIn ,(req, res)=>{
 
 app.post("/addfinaltest", middleware.isLoggedIn, (req, res)=>{
   var finalprice = req.body.finalprice;
+  console.log(req.body)
+  console.log(finalprice)
+  console.log(req.body.test)
   finalprice = Number(finalprice)
-  let newString = req.user.firstname + " " + req.user.lastname;
   let newtestdone = new testdone({
-    name : newString,
+    name : req.body.test,
     email : req.user.email,
     price : finalprice,
     bookedDate: new Date()
