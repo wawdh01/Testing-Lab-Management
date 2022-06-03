@@ -1,0 +1,50 @@
+<%- include ('./partials/header') %>
+<div class="row" style="background-color: rgba(12, 56, 93, 0.8); border-radius: 20px; display: flex; margin: 20px; padding: 10px;">
+    <center>
+    <table>
+        <tr>
+            <td>Email : </td>
+            <td><%= user.email %></td>
+        </tr>
+        <tr>
+            <td>First Name : </td>
+            <td><%= user.firstname %></td>
+        </tr>
+        <tr>
+            <td>Last Name : </td>
+            <td><%= user.lastname %></td>
+        </tr>
+        <tr>
+            <td>User Description : </td>
+            <td><%= user.description %></td>
+        </tr>
+        <tr>
+            <td>Test Name: </td>
+            <td><%= data.name %></td>
+        </tr>
+        <tr>
+            <td>Price : </td>
+            <td><%= data.price %></td>
+        </tr>
+        <tr>
+            <td>Discount : </td>
+            <td><%= data.discount %> %</td>
+        </tr>
+        <tr>
+            <td>Discounted Price : </td>
+            <td><%= data.price * (100-data.discount) / 100 %></td>
+        </tr>
+        <tr>
+            <td> GST Included (10%) : </td>
+            <td> <%= data.price * 0.1 %></td>
+        </tr>
+    </table>
+    <form method="post" action="/addfinaltest">
+        <label> Total Price : </label>
+        <input type="number" id= "finalprice" value="<%= data.price * (100-data.discount) / 100 + data.price * 0.1 %>" readonly>
+        <input type="Submit" value="Book Test">
+    </form>
+
+    </center>
+</div>
+<%- include ('./partials/footer') %>

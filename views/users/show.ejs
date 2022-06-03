@@ -1,0 +1,39 @@
+<%- include ('../partials/header') %>
+<div class="row" style="background-color: rgba(12, 56, 93, 0.8); border-radius: 20px;">
+  <div class="col-md-4">
+      <h1 style="color: chartreuse ;"><%=user.username%></h1>
+      <h3 style="color: cornsilk;"><%=user.firstname + " "  + user.lastname%></h3>
+    <div class="thumbnail" style="background-color: burlywood;">
+      <img src="<%= user.avatar %>" alt="user profile image">
+      <div class="caption">
+        <a href="mailto:<%=user.email%>"><%=user.email%></a>
+      </div>
+    </div>
+    <p style="text-align:center; color: cyan;"><%=user.description%></p>
+    <p style="text-align: center; color: chartreuse"><a href="\booktest">Book a Test</a></p>
+  </div>
+  <div class="col-md-8">
+    <h3 style="font-size:3.5rem; color: darkkhaki;"><%=user.username%>'s LAB Test Data</h3>
+    <div style="overflow-y: auto; overflow-x: auto">
+        <table border="1" style="padding: 20px; margin-bottom: 10px;">
+        <tr>
+            <th>Test Name Performed</th>
+            <th>Price of test</th>
+            <th>Booked Date </th>
+            <th>Report Generated</th>
+            <th>Report generated Date</th>
+        </tr>
+        <%userdata.forEach((data)=>{ %>
+            <tr>
+                <td><%= data.name %></td>
+                <td><%= data.price %></td>
+                <td><%= data.bookedDate %></td>
+                <td></td>
+                <td></td>
+            </tr>
+        <% }); %>
+        </table>
+    </div>
+  </div>
+</div>
+<%- include ('../partials/footer') %>

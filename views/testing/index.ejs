@@ -1,0 +1,50 @@
+<%-include('../partials/header') %>
+<div class="container">
+<header class="jumbotron" style="background:url('https://astm.theglobaldirectory.org/images/ASTMBackground.jpg'); border-radius: 2px; border-color: snow; border-radius: 10px; box-shadow: 2px 2px gray; ">
+  <div class="container">
+    <h1 style="color:white;" class="text">Welcome to TESTING LAB</h1>
+    <p style="color:Crimson;"><b><marquee>Get Your lab Test Digitally Here...</marquee></b></p>
+    <center>
+    <p style="color: whitesmoke; font-size: 40px; border: 2px solid black; border-radius: 10px;">
+        <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date()) %>
+    </p>
+  </center>
+    <p>
+    <button class="btn btn-lg btn-block" style="background-color:Aqua;"><a href="/booktest">Book Your Test Today</a></button>
+    </p>
+  </div>
+</header>
+  <div class="row text-center"  style="display:flex; flex-wrap: wrap;justify-content:center;">
+
+    <% tests.forEach((test)=>{ %>
+        <div class="col-md-4 col-sm-4" style="margin-top:5px; margin-bottom: 5px;">
+          <div class="thumbnail" style="border:1px black; margin: 10px; box-shadow: 1px 2px gray; background-color: blanchedalmond; padding: 10px; border-radius: 10px; justify-content: space-around;" onmouseover="this.style.backgroundColor='skyblue'" onmouseout="this.style.backgroundColor='blanchedalmond'">
+        <img src="<%= test.image %>" style="width: 200px;height: 200px;box-shadow: 2px 2px gray;margin-top: 10px;border-radius: 5px;">
+        <div class="caption">
+          <h4 style="text-transform: uppercase; color: black;" onmouseover="this.style.color='red'" onmouseout="this.style.color='black'"><%= test.name %></h4>
+        </div>
+        <p style="margin-bottom: 20px;">
+            <center>
+            <% if (test.discount !== 0) { %>
+                <p><del><%= test.price %></del></p>
+                <p><%= test.discount %></p>
+                <p><%= test.price - test.discout %></p>
+            <% } else {%>
+                <div style="padding: 17px;"></div>
+                <p><%= test.price %></p>
+                <div style="padding: 17px;"></div>
+            <% } %>
+            </center>
+        </p>
+        <div style="margin: 1px;">
+            <p>
+                <%= test.description %>
+            </p>
+        </div>
+        </div>
+        </div>
+    <% }) %>
+  </div>
+
+  </div>
+    <%- include('../partials/footer') %>

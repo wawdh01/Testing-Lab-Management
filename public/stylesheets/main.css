@@ -1,0 +1,50 @@
+.thumbnail img{
+    width: 100%;
+    }
+    .thumbnail{
+      padding: 0;
+    }
+    .thumbnail .caption-full{
+      padding: 9px;
+    }
+    #deleteform{
+      display: inline;
+    }
+    
+    .text {
+      font-size: 15px;
+      color: #f5f5f5;
+      text-shadow: 1px 1px 1px #919191,
+            1px 2px 1px #919191,
+            1px 3px 1px #919191,
+            1px 4px 1px #919191,
+            1px 5px 1px #919191,
+        1px 16px 10px rgba(16,16,16,0.2),
+        1px 25px 10px rgba(16,16,16,0.2),
+        1px 10px 20px rgba(16,16,16,0.4);
+    }
+    
+    .jadu{
+      animation-name: example;
+      animation-duration: 4s;
+      animation: example 4s;
+      -webkit-animation-fill-mode: forwards;
+    }
+    
+    @-webkit-keyframes example {
+      100% {
+        margin-left:30%;
+      }
+    }
+    
+    @media screen and (max-width: 500px) {
+      .dd{
+        font-size: 6vw;
+      }
+      @-webkit-keyframes example {
+        100% {
+          margin-left: 0px;
+        }
+      }
+    }
+    
