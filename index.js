@@ -174,7 +174,8 @@ app.post("/addfinaltest", middleware.isLoggedIn, (req, res)=>{
     name : req.body.test,
     email : req.user.email,
     price : finalprice,
-    bookedDate: new Date()
+    bookedDate: new Date(),
+    report: ""
   });
   testdone.create(newtestdone, (err, newly)=>{
     if(err) {
@@ -183,7 +184,8 @@ app.post("/addfinaltest", middleware.isLoggedIn, (req, res)=>{
     }
     else {
       req.flash("success", "Test Booked Succesfully...")
-      res.redirect("/home");
+      var redi = "/users/" + req.user._id;
+      res.redirect(redi);
     }
   })
 })
@@ -411,4 +413,21 @@ app.post('/updatedtest', middleware.isLoggedIn, (req, res)=>{
   })  
 })
 
+
+app.post('/getupload', (req, res)=>{
+  const {id, report} = req.body;
+  console.log(id)
+  console.log(report)
+  userdata.findByIdAndUpdate(id, {report: report}, (err, newly)=>{
+    if(err) {
+      req.flash("error", "There is an error..");
+      res.redirect("back");
+    }
+    else {
+      req.flash("Link Updated Successfully...!")
+      var redi = "/users/" + req.user._id;
+      res.redirect(redi);
+    }
+  })
+})
 app.listen(PORT, ()=>console.log(`The server is started at PORT : ${PORT}`));
