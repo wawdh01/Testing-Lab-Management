@@ -9,14 +9,19 @@
         <a href="mailto:<%=user.email%>"><%=user.email%></a>
       </div>
     </div>
+    <center>
     <p style="text-align:center; color: cyan;"><%=user.description%></p>
     <p style="text-align: center; color: chartreuse"><a href="\booktest">Book a Test</a></p>
     <% if (admin == true) { %>
-      <button class="btn btn-lg btn-block" style="background-color:Aqua; margin: 20px;"><a href="/addtest">Add New Test</a></button>
+      <button class="btn btn-lg btn-block" style="background-color:green; margin: 20px;"><a href="/addtest">Add New Test</a></button>
     <% } %>
     <% if (admin == true) { %>
       <button class="btn btn-lg btn-block" style="background-color:red; margin: 20px;"><a href="/deletetest">Delete Test</a></button>
     <% } %>
+    <% if (admin == true) { %>
+      <button class="btn btn-lg btn-block" style="background-color:aqua; margin: 20px;"><a href="/updatetest">Update Test</a></button>
+    <% } %>
+    </center>
   </div>
   <div class="col-md-8">
     <h3 style="font-size:3.5rem; color: darkkhaki;"><%=user.username%>'s LAB Test Data</h3>

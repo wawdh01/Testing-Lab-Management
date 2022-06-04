@@ -362,4 +362,53 @@ app.post("/deletedtest", (req, res)=>{
   })
 })
 
+app.get('/updatetest', middleware.isLoggedIn, (req, res)=>{
+  tests.find({}, (err,alltests)=>{
+    if(err){
+      console.log(err);
+    }else{
+    res.render("updatetest", {tests:alltests});
+    }
+  });
+})
+
+app.post('/updatedtest', middleware.isLoggedIn, (req, res)=>{
+  var {idtest, name, price, discount, description} = req.body;
+  tests.findById(idtest, (err, newly) =>{
+    if (err) {
+      req.flash("error", "Cannot delete the Test..!");
+      res.redirect("home");
+    }
+    else {
+      if(name == "") {
+        name = newly.name;
+      }
+      if (price == "") {
+        price = newly.price;
+      }
+      if (discount == "") {
+        discount = newly.discount;
+      }
+      if (description == "") {
+        description = newly.description;
+      }
+      if (discount > 100 || discount < 0) {
+        req.flash("error", "Discount Range : 0 <= Discount <= 100");
+        res.redirect("back");
+      }
+    }
+
+    tests.findByIdAndUpdate(idtest, {name: name, price: price, discount: discount, description: description}, (err, newly)=>{
+      if(err) {
+        req.flash("error", "Cannot delete the Test..!");
+        res.redirect("home");
+      }
+      else {
+        req.flash("success", "Updated Successfully" + name);
+        res.redirect("home");
+      }
+    })
+  })  
+})
+
 app.listen(PORT, ()=>console.log(`The server is started at PORT : ${PORT}`));
