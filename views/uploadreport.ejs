@@ -1,0 +1,48 @@
+<%- include ('./partials/header') %>
+<div class="row" style="background-color: rgba(12, 56, 93, 0.8); border-radius: 20px;">
+    <div style="overflow-y: auto; overflow-x: auto">
+        <table border="1" style="padding: 20px; margin: 20px;">
+            <tr>
+                <th>Email (User)</th>
+                <th>Test Name Performed</th>
+                <th>Price of test</th>
+                <th>Booked Date </th>
+                <th>Report Generated</th>
+                <th>Report generated Date</th>
+            </tr>
+            <% tests.forEach(test=>{ %>
+                <tr>
+                    <td><%= test.email %></td>
+                    <td><%= test.name %></td>
+                    <td><%= test.price %></td>
+                    <td><%= test.bookedDate %></td>
+                    <td style="margin: 10px; padding: 10px">
+                        <% if (admin == true) { %>
+                            <form action="/getuploadadmin" method="post">
+                              <input type="text" style="display: none;" name="id" id="id" value="<%= test._id %>">
+                              <label for="report">Link</label><br>
+                              <input type="text" name="report" id="report"><br>
+                              <input type="submit" value="Upload">
+                            </form>
+                        <% } %>
+                        <% if (test.report) { %>
+                            <a href="<%= test.report %>">Download</a>
+                        <% } else { %>
+                            <p style="color: red;"><b>Report Not Generated</b></p>
+                        <% } %>
+                    </td>
+                    <td style="margin: 2px;color: white;">
+                        <% if (test.report) { %>
+                          <%= test.reportedDate %>
+                        <% } else { %>
+                          <center>
+                            <p style="color: red;"><b> - </b></p>
+                          </center>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</div>
+<%- include ('./partials/footer') %>

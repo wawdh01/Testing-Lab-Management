@@ -418,7 +418,7 @@ app.post('/getupload', (req, res)=>{
   const {id, report} = req.body;
   console.log(id)
   console.log(report)
-  userdata.findByIdAndUpdate(id, {report: report}, (err, newly)=>{
+  userdata.findByIdAndUpdate(id, {report: report, reportedDate: new Date()}, (err, newly)=>{
     if(err) {
       req.flash("error", "There is an error..");
       res.redirect("back");
@@ -430,4 +430,33 @@ app.post('/getupload', (req, res)=>{
     }
   })
 })
+
+app.post('/getuploadadmin', (req, res)=>{
+  const {id, report} = req.body;
+  console.log(id)
+  console.log(report)
+  userdata.findByIdAndUpdate(id, {report: report, reportedDate: new Date()}, (err, newly)=>{
+    if(err) {
+      req.flash("error", "There is an error..");
+      res.redirect("back");
+    }
+    else {
+      req.flash("Link Updated Successfully...!")
+      res.redirect("uploadreport");
+    }
+  })
+})
+
+app.get('/uploadreport', (req, res)=>{
+  userdata.find({email: {$ne: req.user.email }}, (err,data )=>{
+    if(err) {
+      req.flash("error", "Can't get the Results..!");
+      res.redirect("back");
+    }
+    else {
+      res.render("uploadreport", {tests: data, admin: req.user.isadmin});
+    }
+  })
+})
+
 app.listen(PORT, ()=>console.log(`The server is started at PORT : ${PORT}`));

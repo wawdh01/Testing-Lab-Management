@@ -11,7 +11,10 @@
     </div>
     <center>
     <p style="text-align:center; color: cyan;"><%=user.description%></p>
-    <p style="text-align: center; color: chartreuse"><a href="\booktest">Book a Test</a></p>
+    <p style="text-align: center; color: chartreuse"><a href="/booktest">Book a Test</a></p>
+    <% if (admin == true) { %>
+      <p style="text-align: center; color: white"><a href="/uploadreport">Upload Report</a></p>
+    <% } %>
     <% if (admin == true) { %>
       <button class="btn btn-lg btn-block" style="background-color:green; margin: 20px;"><a href="/addtest">Add New Test</a></button>
     <% } %>
@@ -36,9 +39,9 @@
         </tr>
         <%userdata.forEach((data)=>{ %>
             <tr>
-                <td><%= data.name %></td>
-                <td><%= data.price %></td>
-                <td><%= data.bookedDate %></td>
+                <td style="color: white;"><%= data.name %></td>
+                <td style="color: white;"><%= data.price %></td>
+                <td style="color: white;"><%= data.bookedDate %></td>
                 <td style="margin: 2px; padding: 2px;">
                   <% if (admin == true) { %>
                     <form action="/getupload" method="post">
@@ -54,9 +57,9 @@
                     <p style="color: red;"><b>Report Not Generated</b></p>
                   <% } %>
                 </td>
-                <td style="margin: 2px;">
+                <td style="margin: 2px;color: white;">
                   <% if (data.report) { %>
-                    <%= data.repotedDate %>
+                    <%= data.reportedDate %>
                   <% } else { %>
                     <center>
                       <p style="color: red;"><b> - </b></p>
